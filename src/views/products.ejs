@@ -1,0 +1,48 @@
+«<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', {title: 'Todos los productos'}) %>
+<body>
+	<!-- Header -->
+	<%- include('partials/headerNavbar') %>
+	<!-- /Header -->
+
+	<!-- todos los productos -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Todos los productos</h2>
+			</div>
+			
+			<% products.forEach(cadaProducto=> { %>
+				<div class="col-12 col-sm-6 col-lg-3">
+					<section class="product-box">
+						<a href="/products/detail/<%= cadaProducto.id %> ">
+							<figure class="product-box_image">
+								<img src="/images/products/<%= cadaProducto.image %> " alt="imagen de producto">
+							</figure>
+							<article class="product-box_data">
+								<h2><%= toThousand(cadaProducto.price - cadaProducto.price * cadaProducto.discount / 100) %> </h2>
+								
+								<% if(cadaProducto.discount != 0){%>
+									<span><%= cadaProducto.discount %>  OFF</span>
+								<% } %> 
+								
+								<p> <%= cadaProducto.name %> </p>
+								<i class="fas fa-truck"></i>
+							</article>
+						</a>
+					</section>
+				</div>
+			<% });  %> 	
+			
+		
+		</div>
+	</div>
+	<!-- /todos los productos -->
+
+	<!-- footer -->
+	<%- include('partials/footer') %>
+	<!-- /footer -->
+</body>	
+</html>
